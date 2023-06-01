@@ -1,11 +1,10 @@
-from datapackage import Package
 
-package = Package('https://datahub.io/core/nyse-other-listings/datapackage.json')
-
-# print list of all resources:
-print(package.resource_names)
-
-# print processed tabular data (if exists any)
-for resource in package.resources:
-    if resource.descriptor['datahub']['type'] == 'derived/csv':
-        print(resource.read())
+import yfinance as yf
+ticker = yf.Ticker('GOOGL').info
+print(ticker.keys())
+print(ticker.values())
+market_price = ticker['regularMarketOpen']
+previous_close_price = ticker['regularMarketPreviousClose']
+print('Ticker: GOOGL')
+print('Market Price:', market_price)
+print('Previous Close Price:', previous_close_price)
