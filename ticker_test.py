@@ -2,6 +2,7 @@ import yfinance as yf
 import sys
 import signal
 import schedule
+from datetime import datetime
 # import time
 
 # msft = yf.Ticker("GOOGL")
@@ -24,7 +25,8 @@ def job():
         ticker_yahoo = yf.Ticker(ticker)
         data = ticker_yahoo.history()
         last_quote = data['Close'].iloc[-1]
-        print(ticker, last_quote)
+        now = datetime.now()
+        print(now, ticker, last_quote)
 
 #
 # def get_current_price(symbol):
@@ -36,4 +38,4 @@ def job():
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal_handler)
     print("Hello World")
-    schedule.every(3).minutes.until("16:30").do(job)
+    schedule.every(1).minutes.until("16:30").do(job)
