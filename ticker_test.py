@@ -28,6 +28,9 @@ def job():
         now = datetime.now()
         print(now, ticker, last_quote)
 
+def start_job():
+    pass
+
 #
 # def get_current_price(symbol):
 #     ticker = yf.Ticker(symbol)
@@ -36,6 +39,13 @@ def job():
 
 
 if __name__ == "__main__":
-    signal.signal(signal.SIGINT, signal_handler)
-    print("Hello World")
-    schedule.every(1).minutes.until("16:30").do(job)
+    # while True:
+    #     signal.signal(signal.SIGINT, signal_handler)
+    #     print("Hello World")
+    #     schedule.every(1).minutes.until("16:30").do(job)
+
+    while True:
+        hour = int(datetime.now().strftime("%H"))
+        minute = int(datetime.now().strftime("%M"))
+        if 9 <= hour <= 16:
+            job()
